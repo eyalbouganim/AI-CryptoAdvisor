@@ -66,6 +66,7 @@ const loginUser = async (req, res) => {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
+                hasCompletedOnboarding: user.hasCompletedOnboarding,
                 token: generateToken(user._id),
             });
         } else {

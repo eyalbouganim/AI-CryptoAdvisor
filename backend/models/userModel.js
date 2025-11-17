@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  hasCompletedOnboarding: {
+    type: Boolean,
+    default: false,
+  },
   assetsInterest: {
     type: [String],
     default: [],
@@ -28,9 +32,9 @@ const userSchema = new mongoose.Schema({
     default: '',
   },
   contentPreferences: {
-    type: String,
-    enum: ['Market News', 'Charts', 'Social', 'Fun', ''],
-    default: '',
+    type: [String],
+    enum: ['Market News', 'Charts', 'Social', 'Fun'],
+    default: [],
   },
 }, {
   timestamps: true,

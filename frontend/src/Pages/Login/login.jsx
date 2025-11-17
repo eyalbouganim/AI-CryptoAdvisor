@@ -49,8 +49,12 @@ const Login = () => {
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data));
 
-      // Navigate to a protected route, e.g., the dashboard
-      navigate('/dashboard');
+      // Check the onboarding status and navigate accordingly
+      if (data.hasCompletedOnboarding) {
+        navigate('/dashboard');
+      } else {
+        navigate('/onboarding');
+      }
     } catch (err) {
       setError(err.message);
     }

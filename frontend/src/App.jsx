@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './Pages/Login/login';
 import Register from './Pages/Register/register';
 import Dashboard from './Pages/Dashboard/dashboard';
+import Onboarding from './Pages/Onboarding/onboarding';
 import './App.css';
 
 const theme = {
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/dashboard" element={<Dashboard />} />
           {/* Redirect root path to the login page */}
           <Route path="/" element={<Navigate to="/login" />} />
