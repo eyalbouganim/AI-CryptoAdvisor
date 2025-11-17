@@ -19,19 +19,24 @@ const investorTypeOptions = ['HODLer', 'Day Trader', 'NFT Collector'];
 const contentPreferenceOptions = ['Market News', 'Charts', 'Social', 'Fun'];
 
 const Onboarding = () => {
-  const [preferences, setPreferences] = useState({
-    assetsInterest: [],
-    investorType: '',
-    contentPreferences: [],
+  const [userPreferences, setUserPreferences] = useState({
+    userPreferences: {
+      assetsInterest: [],
+      investorType: '',
+      contentPreferences: [],
+    },
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSelectChange = (event) => {
     const { name, value } = event.target;
-    setPreferences((prev) => ({
+    setUserPreferences((prev) => ({
       ...prev,
-      [name]: value,
+      userPreferences: {
+        ...prev.userPreferences,
+        [name]: value,
+      },
     }));
   };
 
@@ -53,7 +58,7 @@ const Onboarding = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(preferences),
+        body: JSON.stringify(userPreferences),
       });
 
       const data = await response.json();
@@ -88,7 +93,7 @@ const Onboarding = () => {
                 id="assetsInterest"
                 name="assetsInterest"
                 multiple
-                value={preferences.assetsInterest}
+                value={userPreferences.userPreferences.assetsInterest}
                 onChange={handleSelectChange}
                 input={<OutlinedInput />}
                 renderValue={(selected) => (
@@ -110,7 +115,7 @@ const Onboarding = () => {
               What type of investor are you?
             </Typography>
             <FormControl fullWidth>
-              <Select id="investorType" name="investorType" value={preferences.investorType} onChange={handleSelectChange} displayEmpty>
+              <Select id="investorType" name="investorType" value={userPreferences.userPreferences.investorType} onChange={handleSelectChange} displayEmpty>
                 <MenuItem value="" disabled><em>Select one...</em></MenuItem>
                 {investorTypeOptions.map((option) => (<MenuItem key={option} value={option}>{option}</MenuItem>))}
               </Select>
@@ -122,7 +127,7 @@ const Onboarding = () => {
               What content do you prefer?
             </Typography>
             <FormControl fullWidth>
-              <Select id="contentPreferences" name="contentPreferences" multiple value={preferences.contentPreferences} onChange={handleSelectChange} input={<OutlinedInput />} renderValue={(selected) => (
+              <Select id="contentPreferences" name="contentPreferences" multiple value={userPreferences.userPreferences.contentPreferences} onChange={handleSelectChange} input={<OutlinedInput />} renderValue={(selected) => (
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                     {selected.length === 0
                       ? <em style={{ color: 'grey' }}>Select one or more...</em>

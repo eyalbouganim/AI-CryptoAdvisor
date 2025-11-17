@@ -43,7 +43,6 @@ const registerUser = async (req, res) => {
             firstName: savedUser.firstName,
             lastName: savedUser.lastName,
             email: savedUser.email,
-            token: generateToken(savedUser._id),
         });
     } catch (error) {
         console.error(error);

@@ -22,19 +22,21 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  assetsInterest: {
-    type: [String],
-    default: [],
-  },
-  investorType: {
-    type: String,
-    enum: ['HODLer', 'Day Trader', 'NFT Collector', ''],
-    default: '',
-  },
-  contentPreferences: {
-    type: [String],
-    enum: ['Market News', 'Charts', 'Social', 'Fun'],
-    default: [],
+  userPreferences: {
+    assetsInterest: {
+      type: [String],
+      default: [],
+    },
+    investorType: {
+      type: String,
+      enum: ['HODLer', 'Day Trader', 'NFT Collector', ''],
+      default: '',
+    },
+    contentPreferences: {
+      type: [String],
+      enum: ['Market News', 'Charts', 'Social', 'Fun'],
+      default: [],
+    },
   },
 }, {
   timestamps: true,

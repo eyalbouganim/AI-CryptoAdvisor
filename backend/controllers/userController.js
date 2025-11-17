@@ -10,9 +10,11 @@ const updateUserOnboarding = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
       {
-        assetsInterest,
-        investorType,
-        contentPreferences,
+        userPreferences: {
+          assetsInterest,
+          investorType,
+          contentPreferences,
+        },
         hasCompletedOnboarding: true,
       },
       { new: true } // Return the updated document

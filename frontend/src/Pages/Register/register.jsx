@@ -47,10 +47,6 @@ const Register = () => {
         throw new Error(data.message || 'Failed to register');
       }
 
-      // Store token and user data in localStorage
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data));
-
       // Navigate to the login page after successful registration
       navigate('/login');
     } catch (err) {
