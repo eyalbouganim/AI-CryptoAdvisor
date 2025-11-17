@@ -1,0 +1,52 @@
+# Dependency directories
+/node_modules
+/vendor # For PHP (Composer)
+/venv
+/.venv # For Python virtual environments
+
+# Environment variables
+# Contains secrets and should never be committed
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Log files
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Build and compilation output
+/dist
+/build
+/target # For Java (Maven)
+*.class # For Java
+*.exe   # For Windows executables
+*.out   # For Linux/macOS executables
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# IDE and editor directories
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.suo
+*.sln
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Uploads or media files
+# User-generated content should typically be stored elsewhere (like S3)
+/uploads
+/media
