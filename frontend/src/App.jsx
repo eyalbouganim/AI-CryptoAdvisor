@@ -3,6 +3,7 @@ import Login from './Pages/Login/login';
 import Register from './Pages/Register/register';
 import Dashboard from './Pages/Dashboard/dashboard';
 import Onboarding from './Pages/Onboarding/onboarding';
+import ProtectedRoute from './Protection/ProtectedRoute';
 import './App.css';
 
 const theme = {
@@ -23,10 +24,24 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/onboarding"
+            element={
+              <ProtectedRoute>
+                <Onboarding />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           {/* Redirect root path to the login page */}
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </div>
     </Router>
