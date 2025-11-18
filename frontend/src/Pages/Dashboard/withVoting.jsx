@@ -22,7 +22,8 @@ const withVoting = (WrappedComponent, componentName) => {
       if (finalVote) {
         try {
           const token = localStorage.getItem('token');
-          const response = await fetch('http://localhost:5000/api/votes', {
+          const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+          const response = await fetch(`${API_URL}/api/votes`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
