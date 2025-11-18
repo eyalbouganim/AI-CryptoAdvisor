@@ -32,8 +32,7 @@ const Login = () => {
     setError(''); // Clear previous errors
 
     try {
-      // Forcing the Live URL so there is no chance of "localhost" errors
-      const API_URL = "https://ai-cryptoadvisor.onrender.com";
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
       const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {

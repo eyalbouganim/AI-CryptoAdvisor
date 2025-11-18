@@ -28,7 +28,7 @@ const MarketNews = ({ votingButtons }) => {
       }
 
       try {
-        const API_URL = "https://ai-cryptoadvisor.onrender.com";
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
         const response = await fetch(`${API_URL}/api/external/marketnews`, {
           headers: {
             'Authorization': `Bearer ${token}`,
