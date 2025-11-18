@@ -14,10 +14,12 @@ import {
   Chip,
 } from '@mui/material';
 
+// Options for onboarding selections
 const assetOptions = ['Bitcoin', 'Ethereum', 'Altcoins', 'DeFi', 'NFTs'];
 const investorTypeOptions = ['HODLer', 'Day Trader', 'NFT Collector'];
 const contentPreferenceOptions = ['Market News', 'Charts', 'Social', 'Fun'];
 
+// Onboarding component to collect user preferences
 const Onboarding = () => {
   const [userPreferences, setUserPreferences] = useState({
     userPreferences: {

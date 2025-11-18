@@ -4,16 +4,16 @@ const User = require('../models/userModel');
 // @route   PUT /api/users/onboarding
 // @access  Private
 const updateUserOnboarding = async (req, res) => {
-  const { assetsInterest, investorType, contentPreferences } = req.body;
+  const { userPreferences } = req.body;
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
       {
         userPreferences: {
-          assetsInterest,
-          investorType,
-          contentPreferences,
+          assetsInterest: userPreferences.assetsInterest,
+          investorType: userPreferences.investorType,
+          contentPreferences: userPreferences.contentPreferences,
         },
         hasCompletedOnboarding: true,
       },

@@ -9,6 +9,7 @@ import {
   Link,
 } from '@mui/material';
 
+// Login Component
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -70,10 +71,13 @@ const Login = () => {
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h4" sx={{ mb: 1, fontWeight: 'bold' }}>
+          AI Crypto Advisor
+        </Typography>
+        <Typography component="h2" variant="h5">
           Login
         </Typography>
-        <Box component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={onSubmit} noValidate sx={{ mt: 3 }}>
           <TextField
             margin="normal"
             required
