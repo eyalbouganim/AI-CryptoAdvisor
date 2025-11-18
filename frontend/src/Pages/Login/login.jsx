@@ -9,6 +9,7 @@ import {
   Link,
 } from '@mui/material';
 
+// Login Component
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',

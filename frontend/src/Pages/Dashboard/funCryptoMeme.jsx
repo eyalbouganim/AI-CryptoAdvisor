@@ -9,7 +9,8 @@ import {
 } from '@mui/material';
 import MoodIcon from '@mui/icons-material/Mood';
 
-const FunCryptoMeme = () => {
+// Component to display a random crypto meme based on user preferences
+const FunCryptoMeme = ({ votingButtons }) => {
   const [meme, setMeme] = useState({ url: '', title: '' });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -52,9 +53,12 @@ const FunCryptoMeme = () => {
 
   return (
     <Paper elevation={3} sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 2, height: '100%' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <MoodIcon color="secondary" />
-        <Typography variant="h6">Your Fun Crypto Meme!</Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <MoodIcon color="secondary" />
+          <Typography variant="h6">A Little Fun</Typography>
+        </Box>
+        {votingButtons && votingButtons(meme)}
       </Box>
 
       <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 250 }}>

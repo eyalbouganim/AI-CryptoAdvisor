@@ -9,7 +9,9 @@ import {
 } from '@mui/material';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
-const InsightAI = () => {
+
+// Component to display AI generated insights
+const InsightAI = ({ votingButtons }) => {
   const [insight, setInsight] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -17,7 +19,7 @@ const InsightAI = () => {
   const fetchInsight = async () => {
     setLoading(true);
     setError('');
-    setInsight('');
+    // Don't clear insight immediately to preserve voting content
 
     const token = localStorage.getItem('token');
     if (!token) {
@@ -28,7 +30,7 @@ const InsightAI = () => {
 
     try {
       const response = await fetch('http://localhost:5000/api/external/insight-ai', {
-        method: 'POST', // Ensure the method is POST
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -55,9 +57,12 @@ const InsightAI = () => {
 
   return (
     <Paper elevation={3} sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2, height: '100%' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <AutoAwesomeIcon color="primary" />
-        <Typography variant="h6">Your AI Insight</Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <AutoAwesomeIcon color="primary" />
+          <Typography variant="h6">Your AI Insight</Typography>
+        </Box>
+        {votingButtons && votingButtons(insight || '')}
       </Box>
       
       {loading && <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}><CircularProgress /></Box>}

@@ -7,6 +7,7 @@ import {
   Button,
 } from '@mui/material';
 
+// TopMenu component for the dashboard
 const TopMenu = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('User');

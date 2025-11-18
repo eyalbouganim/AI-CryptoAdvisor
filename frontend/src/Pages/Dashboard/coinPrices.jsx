@@ -12,7 +12,8 @@ import {
 } from '@mui/material';
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 
-const CoinPrices = () => {
+// Component to display coin prices according to user preferences
+const CoinPrices = ({ votingButtons }) => {
   const [prices, setPrices] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -59,9 +60,12 @@ const CoinPrices = () => {
 
   return (
     <Paper elevation={3} sx={{ p: 2, height: '100%' }}>
-      <Typography variant="h6" gutterBottom>
-        Your Coin Prices
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+        <Typography variant="h6">
+          Your Coin Prices
+        </Typography>
+        {votingButtons && votingButtons(prices || {})}
+      </Box>
       {loading && (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%' }}>
           <CircularProgress />

@@ -9,6 +9,7 @@ import {
   Link,
 } from '@mui/material';
 
+// Registration component
 const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',

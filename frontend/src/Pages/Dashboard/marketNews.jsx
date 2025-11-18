@@ -12,7 +12,8 @@ import {
   Divider,
 } from '@mui/material';
 
-const MarketNews = () => {
+// Component to display market news
+const MarketNews = ({ votingButtons }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -52,9 +53,12 @@ const MarketNews = () => {
 
   return (
     <Paper elevation={3} sx={{ p: 2, height: '100%' }}>
-      <Typography variant="h6" gutterBottom>
-        Market News
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+        <Typography variant="h6">
+          Market News
+        </Typography>
+        {votingButtons && votingButtons(news.length > 0 ? news.map(n => n.title) : [])}
+      </Box>
       {loading && <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%' }}><CircularProgress /></Box>}
       {error && <Alert severity="error">{error}</Alert>}
       {!loading && !error && (
