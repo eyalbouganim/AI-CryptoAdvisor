@@ -64,6 +64,9 @@ const Register = () => {
           alignItems: 'center',
         }}
       >
+        <Typography component="h1" variant="h4" sx={{ mb: 1, fontWeight: 'bold' }}>
+          AI Crypto Advisor
+        </Typography>
         <Typography component="h1" variant="h5">
           Register
         </Typography>

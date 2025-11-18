@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router();
 const { getMarketNews, getCoinPrices, getInsightAI, getCryptoMeme } = require('../controllers/externalController')
+const { protect } = require('../middleware/authMiddleware');
 
-router.get('/marketnews', getMarketNews)
+router.get('/marketnews', protect, getMarketNews)
 
-router.get('/coinprices', getCoinPrices)
+router.get('/coinprices', protect, getCoinPrices)
 
-router.get('/insight-ai', getInsightAI)
+router.post('/insight-ai', protect, getInsightAI)
 
-router.get('/crypto-meme', getCryptoMeme)
+router.get('/crypto-meme', protect, getCryptoMeme)
 
 module.exports = router;

@@ -1,14 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-    Typography,
-    Box,
+  Typography,
+  Box,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  CircularProgress,
+  Divider,
+  ListItemIcon,
 } from '@mui/material';
+import ShowChartIcon from "@mui/icons-material/ShowChart";
 
 const CoinPrices = () => {
+  const [prices, setPrices] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchCoinPrices = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('Authentication token not found. Please log in again.');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/external/coinprices', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to fetch coin prices.');
+        }
+
+        setPrices(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCoinPrices();
+  }, []);
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(price);
+  };
+
   return (
-    <Box sx={{ p: 2, border: '1px dashed grey', height: '100%' }}>
-      <Typography variant="h6">Coin Prices</Typography>
-    </Box>
+    <Paper elevation={3} sx={{ p: 2, height: '100%' }}>
+      <Typography variant="h6" gutterBottom>
+        Your Coin Prices
+      </Typography>
+      {loading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80%' }}>
+          <CircularProgress />
+        </Box>
+      )}
+      {error && <Typography color="error">{error}</Typography>}
+      {!loading && !error && prices && (
+        <List>
+          {Object.entries(prices).map(([coin, priceData], index) => (
+            <React.Fragment key={coin}>
+              <ListItem>
+                <ListItemIcon>
+                  <ShowChartIcon color="primary" />
+                </ListItemIcon>
+                <ListItemText primary={coin.charAt(0).toUpperCase() + coin.slice(1)} secondary={formatPrice(priceData.usd)} />
+              </ListItem>
+              {index < Object.keys(prices).length - 1 && <Divider variant="inset" component="li" />}
+            </React.Fragment>
+          ))}
+        </List>
+      )}
+    </Paper>
   );
 };
 

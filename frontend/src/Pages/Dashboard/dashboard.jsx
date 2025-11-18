@@ -15,7 +15,7 @@ const Dashboard = () => {
     <Box sx={{ flexGrow: 1, bgcolor: '#f5f5f5', minHeight: '100vh', pb: 4 }}>
       <TopMenu />
       <Container maxWidth="lg" sx={{ mt: 4 }}>
-        <Grid container spacing={'100%'}>
+        <Grid container spacing={3}>
           {/* Top Row: Coin Prices (Large) and AI Insight (Small) */}
           <Grid item xs={12} md={8}>
             <CoinPrices />
