@@ -38,13 +38,15 @@ You must have the following installed on your machine:
 
 ### 1. Installation
 
-# Navigate into the backend directory and install dependencies
+Navigate into the backend directory and install dependencies
+
 ```bash
 cd backend
 npm install
 ```
 
-# Navigate into the frontend directory and install dependencies
+Navigate into the frontend directory and install dependencies
+
 ```bash
 cd ../frontend
 npm install
