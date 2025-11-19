@@ -26,7 +26,7 @@
 
 ## 💻 How to Run Locally
 
-This project is configured to make local development easy and convenient, allowing both the frontend and backend to run simultaneously from the root directory.
+This project is configured to make local development easy and convenient, allowing both the frontend and backend to run simultaneously from two different terminals.
 
 ### Prerequisites
 
